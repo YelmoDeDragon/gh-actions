@@ -1,0 +1,22 @@
+name: Issue Created Workflow
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  print-issue-details:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Issue Details
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_USER: ${{ github.event.issue.user.login }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          echo "New Issue Created:"
+          echo "Number: ${ISSUE_NUMBER}"
+          echo "Title: ${ISSUE_TITLE}"
+          echo "Body: ${ISSUE_BODY}"
+          echo "Created by: ${ISSUE_USER}"
